@@ -57,7 +57,8 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/firebase'
+    '@nuxtjs/firebase',
+    'nuxt-buefy'
   ],
   /*
    ** Axios module configuration
