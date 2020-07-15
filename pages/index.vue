@@ -13,7 +13,14 @@
           password-reveal
         />
       </b-field>
-      <b-button type="is-primary" native-type="submit">Sign In</b-button>
+      <b-button
+        type="is-primary"
+        native-type="submit"
+        :disabled="loading"
+        :loading="loading"
+      >
+        Sign In
+      </b-button>
     </form>
   </div>
 </template>
@@ -23,6 +30,7 @@ export default {
   data() {
     return {
       email: '',
+      loading: false,
       password: ''
     }
   },
@@ -36,12 +44,21 @@ export default {
       })
     },
     handleSubmit() {
+      this.setLoadingTrue()
       this.$fireAuth
         .signInWithEmailAndPassword(this.email, this.password)
-        .catch(error => this.displayErrorMsg(error))
+        .then(this.setLoadingTrue())
+        .catch(error => {
+          this.setLoadingFalse()
+          this.displayErrorMsg(error)
+        })
+    },
+    setLoadingFalse() {
+      this.loading = false
+    },
+    setLoadingTrue() {
+      this.loading = true
     }
   }
 }
 </script>
-
-// TODO: add debounced loading
