@@ -3,7 +3,7 @@ export default {
    ** Nuxt rendering mode
    ** See https://nuxtjs.org/api/configuration-mode
    */
-  mode: 'universal',
+  mode: 'spa',
   /*
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target
@@ -36,6 +36,13 @@ export default {
    ** https://nuxtjs.org/guide/plugins
    */
   plugins: [],
+  /*
+   ** Router configuration
+   ** See https://nuxtjs.org/api/configuration-router
+   */
+  router: {
+    middleware: 'auth'
+  },
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
