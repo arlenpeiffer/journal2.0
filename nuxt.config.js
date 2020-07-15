@@ -77,7 +77,12 @@ export default {
       appId: process.env.FIREBASE_APP_ID
     },
     services: {
-      auth: true,
+      auth: {
+        persistence: 'session',
+        initialize: {
+          onAuthStateChangedAction: 'handleAuthStateChanged'
+        }
+      },
       realtimeDb: true
     }
   },
