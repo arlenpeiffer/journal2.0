@@ -18,5 +18,9 @@ export default {
     commit('SET_USER_ID', uid)
     this.$router.push('/dashboard')
     dispatch('fetchUserData')
+  },
+  signOut() {
+    this.$fireAuth.signOut()
+    this.$router.push('/')
   }
 }
