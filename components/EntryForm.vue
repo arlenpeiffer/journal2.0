@@ -95,6 +95,29 @@
       </b-field>
     </fieldset>
 
+    <!-- Travel -->
+    <fieldset>
+      <h2 class="title is-4">Travel</h2>
+      <b-field label="Be ye traveling?" custom-class="is-small">
+        <b-switch v-model="travel.isTraveling" @input="setLocation">
+          {{ isTravelingLabel }}
+        </b-switch>
+      </b-field>
+      <b-field label="Where ya at?" custom-class="is-small">
+        <b-input v-model="travel.location" :disabled="!travel.isTraveling" />
+      </b-field>
+    </fieldset>
+
+    <!-- Notes -->
+    <fieldset>
+      <h2 class="title is-4">Notes</h2>
+      <b-input
+        v-model="notes"
+        type="textarea"
+        placeholder="Overall notes about the day.."
+      />
+    </fieldset>
+
     <b-button type="is-primary" @click="submitEntry">Submit</b-button>
   </form>
 </template>
@@ -105,10 +128,14 @@ export default {
     entry: {
       type: Object,
       default: () => ({
+        appointments: [],
         diet: {
           type: null,
           notes: ''
         },
+        mood: [],
+        movement: [],
+        notes: '',
         pain: {
           level: null,
           notes: ''
@@ -125,20 +152,34 @@ export default {
         stress: {
           level: null,
           notes: ''
+        },
+        supplements: [],
+        travel: {
+          isTraveling: false,
+          location: 'Home'
         }
       })
     }
   },
   data() {
     return {
+      appointments: this.entry.appointments,
       diet: this.entry.diet,
+      mood: this.entry.mood,
+      movement: this.entry.movement,
+      notes: this.entry.notes,
       pain: this.entry.pain,
       sleep: this.entry.sleep,
       stomach: this.entry.stomach,
-      stress: this.entry.stress
+      stress: this.entry.stress,
+      supplements: this.entry.supplements,
+      travel: this.entry.travel
     }
   },
   computed: {
+    isTravelingLabel() {
+      return this.travel.isTraveling ? 'Yes' : 'No'
+    },
     logs() {
       return this.$store.state.user.logs
     },
@@ -168,6 +209,11 @@ export default {
     }
   },
   methods: {
+    setLocation(isTraveling) {
+      isTraveling
+        ? (this.travel.location = '')
+        : (this.travel.location = 'Home')
+    },
     setSleepAmount(date) {
       let [h, m] = date.toTimeString().slice(0, 5).split(':')
       h = Number(h)
