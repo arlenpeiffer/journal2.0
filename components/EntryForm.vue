@@ -21,18 +21,16 @@
       <h2 class="title is-4">Appointments</h2>
       <div v-for="(appointment, ix) in appointments" :key="ix">
         <span class="delete" @click="removeAppointment(ix)" />
-        <b-field label="Type" custom-class="is-small">
-          <b-autocomplete
-            v-model="appointment.type"
-            :data="logs.appointments"
-          />
-        </b-field>
-        <b-field label="Practitioner" custom-class="is-small">
-          <b-autocomplete
-            v-model="appointment.practitioner"
-            :data="logs.practitioners"
-          />
-        </b-field>
+        <Autocomplete
+          v-model="appointment.type"
+          label="Type"
+          :options="logs.appointments"
+        />
+        <Autocomplete
+          v-model="appointment.practitioner"
+          label="Practitioner"
+          :options="logs.practitioners"
+        />
         <b-field label="Notes" custom-class="is-small">
           <b-input v-model="appointment.notes" />
         </b-field>
@@ -149,7 +147,12 @@
 </template>
 
 <script>
+import Autocomplete from '@/components/Autocomplete'
+
 export default {
+  components: {
+    Autocomplete
+  },
   props: {
     entry: {
       type: Object,
