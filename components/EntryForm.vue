@@ -16,6 +16,32 @@
       </b-field>
     </fieldset>
 
+    <!-- Appointments -->
+    <fieldset>
+      <h2 class="title is-4">Appointments</h2>
+      <div v-for="(appointment, ix) in appointments" :key="ix">
+        <span class="delete" @click="removeAppointment(ix)" />
+        <b-field label="Type" custom-class="is-small">
+          <b-autocomplete
+            v-model="appointment.type"
+            :data="logs.appointments"
+          />
+        </b-field>
+        <b-field label="Practitioner" custom-class="is-small">
+          <b-autocomplete
+            v-model="appointment.practitioner"
+            :data="logs.practitioners"
+          />
+        </b-field>
+        <b-field label="Notes" custom-class="is-small">
+          <b-input v-model="appointment.notes" />
+        </b-field>
+      </div>
+      <b-button type="is-primary" outlined @click="addAppointment">
+        Add Appointment
+      </b-button>
+    </fieldset>
+
     <!-- Pain -->
     <fieldset>
       <h2 class="title is-4">Pain</h2>
@@ -209,6 +235,16 @@ export default {
     }
   },
   methods: {
+    addAppointment() {
+      this.appointments.push({
+        type: '',
+        practitioner: '',
+        notes: ''
+      })
+    },
+    removeAppointment(ix) {
+      this.appointments.splice(ix, 1)
+    },
     setLocation(isTraveling) {
       isTraveling
         ? (this.travel.location = '')
