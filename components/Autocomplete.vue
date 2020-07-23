@@ -1,6 +1,11 @@
 <template>
   <b-field :label="label" custom-class="is-small">
-    <b-autocomplete v-model="value" :data="filteredOptions" @input="setValue" />
+    <b-autocomplete
+      v-model="value"
+      :data="filteredOptions"
+      :placeholder="placeholder"
+      @input="setValue"
+    />
   </b-field>
 </template>
 
@@ -14,6 +19,10 @@ export default {
     options: {
       type: Array,
       default: () => []
+    },
+    placeholder: {
+      type: String,
+      default: ''
     }
   },
   data() {
