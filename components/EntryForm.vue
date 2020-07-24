@@ -19,25 +19,28 @@
     <!-- Appointments -->
     <fieldset>
       <h2 class="title is-4">Appointments</h2>
-      <div v-for="(appointment, ix) in appointments" :key="ix">
-        <span class="delete" @click="removeAppointment(ix)" />
+      <FieldsetArray
+        v-slot="{ fieldset }"
+        :array="appointments"
+        :fieldset="appointment"
+        label="Appointment"
+      >
         <Autocomplete
-          v-model="appointment.type"
+          v-model="fieldset.type"
           label="Type"
           :options="logs.appointments"
+          placeholder="Appointment type (eg. Therapy, Rhuemetology)"
         />
         <Autocomplete
-          v-model="appointment.practitioner"
+          v-model="fieldset.practitioner"
           label="Practitioner"
           :options="logs.practitioners"
+          placeholder="Appointment practitioner name"
         />
         <b-field label="Notes" custom-class="is-small">
-          <b-input v-model="appointment.notes" />
+          <b-input v-model="fieldset.notes" placeholder="Appointment notes" />
         </b-field>
-      </div>
-      <b-button type="is-primary" outlined @click="addAppointment">
-        Add Appointment
-      </b-button>
+      </FieldsetArray>
     </fieldset>
 
     <!-- Pain -->
@@ -148,10 +151,12 @@
 
 <script>
 import Autocomplete from '@/components/Autocomplete'
+import FieldsetArray from '@/components/FieldsetArray'
 
 export default {
   components: {
-    Autocomplete
+    Autocomplete,
+    FieldsetArray
   },
   props: {
     entry: {
@@ -206,6 +211,13 @@ export default {
     }
   },
   computed: {
+    appointment() {
+      return {
+        type: '',
+        practitioner: '',
+        notes: ''
+      }
+    },
     isTravelingLabel() {
       return this.travel.isTraveling ? 'Yes' : 'No'
     },
@@ -238,16 +250,6 @@ export default {
     }
   },
   methods: {
-    addAppointment() {
-      this.appointments.push({
-        type: '',
-        practitioner: '',
-        notes: ''
-      })
-    },
-    removeAppointment(ix) {
-      this.appointments.splice(ix, 1)
-    },
     setLocation(isTraveling) {
       isTraveling
         ? (this.travel.location = '')

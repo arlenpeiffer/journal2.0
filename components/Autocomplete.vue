@@ -1,9 +1,9 @@
 <template>
   <b-field :label="label" custom-class="is-small">
     <b-autocomplete
-      v-model="value"
       :data="filteredOptions"
       :placeholder="placeholder"
+      :value="value"
       @input="setValue"
     />
   </b-field>
@@ -23,11 +23,10 @@ export default {
     placeholder: {
       type: String,
       default: ''
-    }
-  },
-  data() {
-    return {
-      value: ''
+    },
+    value: {
+      type: String,
+      default: ''
     }
   },
   computed: {
@@ -38,8 +37,8 @@ export default {
     }
   },
   methods: {
-    setValue() {
-      this.$emit('input', this.value)
+    setValue(value) {
+      this.$emit('input', value)
     }
   }
 }
