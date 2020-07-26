@@ -22,7 +22,7 @@
       <FieldsetArray
         v-slot="{ fieldset }"
         :array="appointments"
-        :fieldset="appointment"
+        :fieldset="appointmentFields"
         label="Appointment"
       >
         <Autocomplete
@@ -232,7 +232,7 @@ export default {
     }
   },
   computed: {
-    appointment() {
+    appointmentFields() {
       return {
         type: '',
         practitioner: '',
