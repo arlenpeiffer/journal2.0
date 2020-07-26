@@ -43,6 +43,27 @@
       </FieldsetArray>
     </fieldset>
 
+    <!-- Movement -->
+    <fieldset>
+      <h2 class="title is-4">Movement</h2>
+      <FieldsetArray
+        v-slot="{ fieldset }"
+        :array="movement"
+        :fieldset="movementFields"
+        label="Movement"
+      >
+        <Autocomplete
+          v-model="fieldset.type"
+          label="Type"
+          :options="logs.movement"
+          placeholder="Movement type (eg. Swimming, Yoga)"
+        />
+        <b-field label="Notes" custom-class="is-small">
+          <b-input v-model="fieldset.notes" placeholder="Movement notes" />
+        </b-field>
+      </FieldsetArray>
+    </fieldset>
+
     <!-- Pain -->
     <fieldset>
       <h2 class="title is-4">Pain</h2>
@@ -247,6 +268,12 @@ export default {
           value: 4
         }
       ]
+    },
+    movementFields() {
+      return {
+        type: '',
+        notes: ''
+      }
     }
   },
   methods: {
