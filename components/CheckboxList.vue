@@ -2,17 +2,17 @@
   <b-field class="columns is-multiline checkbox-list">
     <!-- TODO: add optional label -->
     <div
-      v-for="option in options"
-      :key="option"
+      v-for="item in checkboxList"
+      :key="item"
       class="column is-one-third-mobile is-one-quarter-tablet is-one-fifth-desktop"
     >
       <b-checkbox
         v-model="checkedItems"
-        :native-value="option"
+        :native-value="item"
         class="checkbox-list-item"
         @input="setValue"
       >
-        {{ option }}
+        {{ item }}
       </b-checkbox>
     </div>
     <!-- TODO: add 'add new' button/input -->
@@ -20,11 +20,17 @@
 </template>
 
 <script>
+import { sort } from '@/lib/helpers'
+
 export default {
   props: {
-    options: {
+    list: {
       type: Array,
       default: () => []
+    },
+    sorted: {
+      type: Boolean,
+      default: false
     },
     value: {
       type: Array,
@@ -34,6 +40,11 @@ export default {
   data() {
     return {
       checkedItems: this.value
+    }
+  },
+  computed: {
+    checkboxList() {
+      return this.sorted ? sort(this.list) : this.list
     }
   },
   methods: {

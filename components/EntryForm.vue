@@ -19,7 +19,7 @@
     <!-- Supplements -->
     <fieldset>
       <h2 class="title is-4">Supplements</h2>
-      <CheckboxList v-model="supplements" :options="logs.supplements" />
+      <CheckboxList v-model="supplements" :list="logs.supplements" sorted />
     </fieldset>
 
     <!-- Appointments -->
@@ -52,7 +52,7 @@
     <!-- Mood -->
     <fieldset>
       <h2 class="title is-4">Mood</h2>
-      <CheckboxList v-model="mood" :options="logs.moods" />
+      <CheckboxList v-model="mood" :list="logs.moods" sorted />
     </fieldset>
 
     <!-- Movement -->
