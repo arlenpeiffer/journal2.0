@@ -7,7 +7,7 @@
       class="column is-one-third-mobile is-one-quarter-tablet is-one-fifth-desktop"
     >
       <b-checkbox
-        v-model="value"
+        v-model="checkedItems"
         :native-value="option"
         class="checkbox-list-item"
         @input="setValue"
@@ -31,9 +31,14 @@ export default {
       default: () => []
     }
   },
+  data() {
+    return {
+      checkedItems: this.value
+    }
+  },
   methods: {
     setValue() {
-      this.$emit('input', this.value)
+      this.$emit('input', this.checkedItems)
     }
   }
 }
