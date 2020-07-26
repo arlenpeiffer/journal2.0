@@ -16,6 +16,12 @@
       </b-field>
     </fieldset>
 
+    <!-- Supplements -->
+    <fieldset>
+      <h2 class="title is-4">Supplements</h2>
+      <CheckboxList v-model="supplements" :options="logs.supplements" />
+    </fieldset>
+
     <!-- Appointments -->
     <fieldset>
       <h2 class="title is-4">Appointments</h2>
@@ -41,6 +47,12 @@
           <b-input v-model="fieldset.notes" placeholder="Appointment notes" />
         </b-field>
       </FieldsetArray>
+    </fieldset>
+
+    <!-- Mood -->
+    <fieldset>
+      <h2 class="title is-4">Mood</h2>
+      <CheckboxList v-model="mood" :options="logs.moods" />
     </fieldset>
 
     <!-- Movement -->
@@ -172,11 +184,13 @@
 
 <script>
 import Autocomplete from '@/components/Autocomplete'
+import CheckboxList from '@/components/CheckboxList'
 import FieldsetArray from '@/components/FieldsetArray'
 
 export default {
   components: {
     Autocomplete,
+    CheckboxList,
     FieldsetArray
   },
   props: {
