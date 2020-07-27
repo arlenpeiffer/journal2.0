@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import { sort } from '@/lib/helpers'
+
 export default {
   props: {
     label: {
@@ -31,9 +33,12 @@ export default {
   },
   computed: {
     filteredOptions() {
-      return this.options.filter(option =>
+      return this.sortedOptions.filter(option =>
         option.toLowerCase().startsWith(this.value.toLowerCase())
       )
+    },
+    sortedOptions() {
+      return sort(this.options)
     }
   },
   methods: {
