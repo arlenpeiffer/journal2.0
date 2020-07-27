@@ -60,7 +60,7 @@ export default {
         hasIcon: true,
         icon: 'alert-decagram',
         message: `Are you sure you want to remove this ${this.lowercaseLabel}?`,
-        onConfirm: this.handleConfirm(ix),
+        onConfirm: () => this.handleConfirm(ix),
         title: `Remove ${this.lowercaseLabel}`
       })
     },
