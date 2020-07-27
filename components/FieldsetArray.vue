@@ -1,6 +1,10 @@
 <template>
   <div>
-    <b-button type="is-primary" @click="addFieldset">
+    <b-button
+      type="is-primary"
+      icon-left="plus-box-multiple"
+      @click="addFieldset"
+    >
       {{ `Add ${label}` }}
     </b-button>
     <fieldset v-for="(item, ix) in array" :key="ix">
