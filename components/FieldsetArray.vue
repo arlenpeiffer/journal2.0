@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-button type="is-primary capitalized" @click="addFieldset">
+    <b-button type="is-primary" @click="addFieldset">
       {{ `Add ${label}` }}
     </b-button>
     <fieldset v-for="(item, ix) in array" :key="ix">
@@ -72,9 +72,6 @@ export default {
 </script>
 
 <style>
-.capitalized {
-  text-transform: capitalize;
-}
 .remove-button {
   display: flex;
   justify-content: flex-end;
