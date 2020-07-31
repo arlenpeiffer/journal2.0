@@ -79,17 +79,11 @@
     <!-- Pain -->
     <fieldset>
       <h2 class="title is-4">Pain</h2>
-      <!-- TODO: add label -->
-      <b-field>
-        <b-radio-button
-          v-for="option in levelOptions"
-          :key="option.value"
-          v-model="pain.level"
-          :native-value="option.value"
-        >
-          {{ option.label }}
-        </b-radio-button>
-      </b-field>
+      <RadioButtonGroup
+        v-model="pain.level"
+        label="Level"
+        :options="levelOptions"
+      />
       <b-field label="Notes" custom-class="is-small">
         <b-input v-model="pain.notes" placeholder="Notes" />
       </b-field>
@@ -98,17 +92,11 @@
     <!-- Stress -->
     <fieldset>
       <h2 class="title is-4">Stress</h2>
-      <!-- TODO: add label -->
-      <b-field>
-        <b-radio-button
-          v-for="option in levelOptions"
-          :key="option.value"
-          v-model="stress.level"
-          :native-value="option.value"
-        >
-          {{ option.label }}
-        </b-radio-button>
-      </b-field>
+      <RadioButtonGroup
+        v-model="stress.level"
+        label="Level"
+        :options="levelOptions"
+      />
       <b-field label="Notes" custom-class="is-small">
         <b-input v-model="stress.notes" placeholder="Notes" />
       </b-field>
@@ -186,12 +174,14 @@
 import Autocomplete from '@/components/Autocomplete'
 import CheckboxList from '@/components/CheckboxList'
 import FieldsetArray from '@/components/FieldsetArray'
+import RadioButtonGroup from '@/components/RadioButtonGroup'
 
 export default {
   components: {
     Autocomplete,
     CheckboxList,
-    FieldsetArray
+    FieldsetArray,
+    RadioButtonGroup
   },
   props: {
     entry: {
