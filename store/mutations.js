@@ -1,4 +1,10 @@
 export default {
+  ADD_MOOD: (state, mood) => {
+    state.user.logs.moods = [...state.user.logs.moods, mood]
+  },
+  ADD_SUPPLEMENT: (state, supplement) => {
+    state.user.logs.supplements = [...state.user.logs.supplements, supplement]
+  },
   CLEAR_USER_DATA: state => {
     state.user = null
   },

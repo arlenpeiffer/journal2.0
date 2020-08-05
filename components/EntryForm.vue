@@ -20,6 +20,11 @@
     <fieldset>
       <h2 class="title is-4">Supplements</h2>
       <CheckboxList v-model="supplements" :list="logs.supplements" sorted />
+      <AddToLogDropdown
+        label="Add a supplement"
+        log-name="supplements"
+        mutation="ADD_SUPPLEMENT"
+      />
     </fieldset>
 
     <!-- Appointments -->
@@ -53,6 +58,11 @@
     <fieldset>
       <h2 class="title is-4">Mood</h2>
       <CheckboxList v-model="mood" :list="logs.moods" sorted />
+      <AddToLogDropdown
+        label="Add a mood"
+        log-name="moods"
+        mutation="ADD_MOOD"
+      />
     </fieldset>
 
     <!-- Movement -->
@@ -171,6 +181,7 @@
 </template>
 
 <script>
+import AddToLogDropdown from '@/components/AddToLogDropdown'
 import Autocomplete from '@/components/Autocomplete'
 import CheckboxList from '@/components/CheckboxList'
 import FieldsetArray from '@/components/FieldsetArray'
@@ -178,6 +189,7 @@ import RadioButtonGroup from '@/components/RadioButtonGroup'
 
 export default {
   components: {
+    AddToLogDropdown,
     Autocomplete,
     CheckboxList,
     FieldsetArray,
