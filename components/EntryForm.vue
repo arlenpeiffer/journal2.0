@@ -134,8 +134,8 @@
       <b-field label="Rating" custom-class="is-small">
         <b-rate
           :v-bind="sleep.rating"
-          :value="sleep.rating"
           spaced
+          :value="sleep.rating"
           @change="setSleepRating"
         />
       </b-field>
@@ -150,8 +150,8 @@
       <b-field label="Rating" custom-class="is-small">
         <b-rate
           :v-bind="stomach.rating"
-          :value="stomach.rating"
           spaced
+          :value="stomach.rating"
           @change="setStomachRating"
         />
       </b-field>
