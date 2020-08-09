@@ -3,14 +3,21 @@
     <!-- Diet -->
     <fieldset>
       <h2 class="title is-4">Diet</h2>
-      <b-field label="Type" custom-class="is-small">
-        <b-select v-model="diet.type" expanded>
-          <option :value="null">None</option>
-          <option v-for="diet in logs.diets" :key="diet" :value="diet">
-            {{ diet }}
-          </option>
-        </b-select>
-      </b-field>
+      <Dropdown
+        v-model="diet.type"
+        allow-reset
+        include-footer
+        label="Type"
+        :options="logs.diets"
+        placeholder="None"
+        sorted
+      >
+        <AddToLogDropdown
+          label="Add a diet"
+          log-name="diets"
+          mutation="ADD_DIET"
+        />
+      </Dropdown>
       <b-field label="Notes" custom-class="is-small">
         <b-input v-model="diet.notes" placeholder="Notes" />
       </b-field>
@@ -184,6 +191,7 @@
 import AddToLogDropdown from '@/components/AddToLogDropdown'
 import Autocomplete from '@/components/Autocomplete'
 import CheckboxList from '@/components/CheckboxList'
+import Dropdown from '@/components/Dropdown'
 import FieldsetArray from '@/components/FieldsetArray'
 import RadioButtonGroup from '@/components/RadioButtonGroup'
 
@@ -192,6 +200,7 @@ export default {
     AddToLogDropdown,
     Autocomplete,
     CheckboxList,
+    Dropdown,
     FieldsetArray,
     RadioButtonGroup
   },

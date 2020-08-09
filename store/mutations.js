@@ -1,4 +1,7 @@
 export default {
+  ADD_DIET: (state, diet) => {
+    state.user.logs.diets = [...state.user.logs.diets, diet]
+  },
   ADD_MOOD: (state, mood) => {
     state.user.logs.moods = [...state.user.logs.moods, mood]
   },
