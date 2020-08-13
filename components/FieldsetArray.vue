@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="fieldset-array">
     <b-button
       type="is-primary"
       icon-left="plus-box-multiple"
@@ -82,25 +82,28 @@ export default {
 </script>
 
 <style lang="scss">
-.fieldset-array-item {
-  margin: 0.75rem 0;
-  .fieldset-array-item-card {
-    border: 1px solid #dbdbdb;
-    border-radius: 0.25rem;
-    box-shadow: 0 1px 2px rgba(10, 10, 10, 0.1);
-    padding: 2rem 1.5rem;
-    position: relative;
-  }
-  .remove-item {
-    display: flex;
-    justify-content: flex-end;
-    position: absolute;
-    right: 0.75rem;
-    top: 0.75rem;
-  }
-  .add-item {
-    cursor: pointer;
+.fieldset-array {
+  margin-bottom: 0.75rem;
+  .fieldset-array-item {
     margin-top: 0.75rem;
+    .fieldset-array-item-card {
+      border: 1px solid #dbdbdb;
+      border-radius: 0.25rem;
+      box-shadow: 0 1px 2px rgba(10, 10, 10, 0.1);
+      padding: 2rem 1.5rem;
+      position: relative;
+    }
+    .remove-item {
+      display: flex;
+      justify-content: flex-end;
+      position: absolute;
+      right: 0.75rem;
+      top: 0.75rem;
+    }
+    .add-item {
+      cursor: pointer;
+      margin-top: 0.75rem;
+    }
   }
 }
 </style>
