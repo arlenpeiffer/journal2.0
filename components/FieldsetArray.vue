@@ -7,14 +7,20 @@
     >
       {{ `Add ${label}` }}
     </b-button>
-    <fieldset v-for="(item, ix) in array" :key="ix">
-      <div class="remove-button">
-        <b-tooltip :label="tooltipText" position="is-left" type="is-dark">
-          <button class="delete" @click.prevent="openDialog(ix)" />
-        </b-tooltip>
+    <fieldset v-for="(item, ix) in array" :key="ix" class="fieldset-array-item">
+      <div class="fieldset-array-item-card">
+        <span class="remove-item">
+          <b-tooltip :label="tooltipText" position="is-left" type="is-dark">
+            <button class="delete" @click.prevent="openDialog(ix)" />
+          </b-tooltip>
+        </span>
+        <slot :fieldset="item" />
       </div>
-      <slot :fieldset="item" />
-      <span v-if="ix === lastIx" class="tag is-white" @click="addFieldset">
+      <span
+        v-if="ix === lastIx"
+        class="add-item tag is-white"
+        @click="addFieldset"
+      >
         Add another {{ lowercaseLabel }}..
       </span>
     </fieldset>
@@ -75,9 +81,26 @@ export default {
 }
 </script>
 
-<style>
-.remove-button {
-  display: flex;
-  justify-content: flex-end;
+<style lang="scss">
+.fieldset-array-item {
+  margin: 0.75rem 0;
+  .fieldset-array-item-card {
+    border: 1px solid #dbdbdb;
+    border-radius: 0.25rem;
+    box-shadow: 0 1px 2px rgba(10, 10, 10, 0.1);
+    padding: 2rem 1.5rem;
+    position: relative;
+  }
+  .remove-item {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.75rem;
+  }
+  .add-item {
+    cursor: pointer;
+    margin-top: 0.75rem;
+  }
 }
 </style>
