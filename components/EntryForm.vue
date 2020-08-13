@@ -188,6 +188,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import AddToLogDropdown from '@/components/AddToLogDropdown'
 import Autocomplete from '@/components/Autocomplete'
 import CheckboxList from '@/components/CheckboxList'
@@ -267,9 +268,6 @@ export default {
     isTravelingLabel() {
       return this.travel.isTraveling ? 'Yes' : 'No'
     },
-    logs() {
-      return this.$store.state.user.logs
-    },
     levelOptions() {
       return [
         {
@@ -299,7 +297,8 @@ export default {
         type: '',
         notes: ''
       }
-    }
+    },
+    ...mapGetters(['logs'])
   },
   methods: {
     setLocation(isTraveling) {
