@@ -1,30 +1,36 @@
 <template>
-  <div class="fieldset-array">
-    <b-button
-      type="is-primary"
-      icon-left="plus-box-multiple"
-      @click="addFieldset"
-    >
-      {{ `Add ${label}` }}
-    </b-button>
-    <fieldset v-for="(item, ix) in array" :key="ix" class="fieldset-array-item">
-      <div class="fieldset-array-item-card">
-        <span class="remove-item">
-          <b-tooltip :label="tooltipText" position="is-left" type="is-dark">
-            <button class="delete" @click.prevent="openDialog(ix)" />
-          </b-tooltip>
-        </span>
-        <slot :fieldset="item" />
-      </div>
-      <span
-        v-if="ix === lastIx"
-        class="add-item tag is-white"
+  <b-field :label="fieldLabel" custom-class="is-small">
+    <div class="fieldset-array">
+      <b-button
+        type="is-primary"
+        icon-left="plus-box-multiple"
         @click="addFieldset"
       >
-        Add another {{ lowercaseLabel }}..
-      </span>
-    </fieldset>
-  </div>
+        {{ `Add ${label}` }}
+      </b-button>
+      <fieldset
+        v-for="(item, ix) in array"
+        :key="ix"
+        class="fieldset-array-item"
+      >
+        <div class="fieldset-array-item-card">
+          <span class="remove-item">
+            <b-tooltip :label="tooltipText" position="is-left" type="is-dark">
+              <button class="delete" @click.prevent="openDialog(ix)" />
+            </b-tooltip>
+          </span>
+          <slot :fieldset="item" />
+        </div>
+        <span
+          v-if="ix === lastIx"
+          class="add-item tag is-white"
+          @click="addFieldset"
+        >
+          Add another {{ lowercaseLabel }}..
+        </span>
+      </fieldset>
+    </div>
+  </b-field>
 </template>
 
 <script>
@@ -34,16 +40,23 @@ export default {
       type: Array,
       required: true
     },
+    fieldLabel: {
+      type: String,
+      default: ''
+    },
     fieldset: {
       type: Object,
       required: true
     },
-    label: {
+    fieldsetLabel: {
       type: String,
       default: ''
     }
   },
   computed: {
+    label() {
+      return this.fieldsetLabel
+    },
     lastIx() {
       return this.array.length - 1
     },

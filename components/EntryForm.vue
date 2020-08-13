@@ -41,7 +41,7 @@
         v-slot="{ fieldset }"
         :array="appointments"
         :fieldset="appointmentFields"
-        label="Appointment"
+        fieldset-label="Appointment"
       >
         <Autocomplete
           v-model="fieldset.type"
@@ -79,7 +79,7 @@
         v-slot="{ fieldset }"
         :array="movement"
         :fieldset="movementFields"
-        label="Movement"
+        fieldset-label="Movement"
       >
         <Autocomplete
           v-model="fieldset.type"
