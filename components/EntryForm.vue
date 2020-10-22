@@ -1,5 +1,11 @@
 <template>
   <form>
+    <!-- Date -->
+    <fieldset>
+      <h2 class="title is-4">Date</h2>
+      <DatePicker v-model="date" />
+    </fieldset>
+
     <!-- Diet -->
     <fieldset>
       <h2 class="title is-4">Diet</h2>
@@ -210,6 +216,7 @@ export default {
       type: Object,
       default: () => ({
         appointments: [],
+        date: new Date(),
         diet: {
           type: null,
           notes: ''
@@ -245,6 +252,7 @@ export default {
   data() {
     return {
       appointments: this.entry.appointments,
+      date: this.entry.date,
       diet: this.entry.diet,
       mood: this.entry.mood,
       movement: this.entry.movement,
