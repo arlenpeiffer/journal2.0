@@ -1,4 +1,7 @@
 export default {
+  journal: state => {
+    return state.user.journal
+  },
   logs: state => {
     return state.user.logs
   },
