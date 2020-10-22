@@ -61,6 +61,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/dayjs',
     '@nuxtjs/firebase',
     'nuxt-buefy'
   ],
