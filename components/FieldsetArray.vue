@@ -17,7 +17,7 @@
         <div class="fieldset-array-item-card">
           <span class="remove-item">
             <b-tooltip :label="tooltipText" position="is-left" type="is-dark">
-              <button class="delete" @click.prevent="openDialog(ix)" />
+              <button class="delete" @click="openDialog(ix)" />
             </b-tooltip>
           </span>
           <slot :fieldset="item" />
