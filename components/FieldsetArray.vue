@@ -12,6 +12,7 @@
         v-for="(item, ix) in array"
         :key="ix"
         class="fieldset-array-item"
+        @keydown.enter.prevent
       >
         <div class="fieldset-array-item-card">
           <span class="remove-item">
