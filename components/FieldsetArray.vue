@@ -1,13 +1,14 @@
 <template>
-  <b-field :label="fieldLabel" custom-class="is-small">
+  <div class="fieldset-array-wrap">
+    <label v-if="fieldLabel" class="label is-small">{{ fieldLabel }}</label>
+    <b-button
+      type="is-primary"
+      icon-left="plus-box-multiple"
+      @click="addFieldset"
+    >
+      {{ `Add ${label}` }}
+    </b-button>
     <div class="fieldset-array">
-      <b-button
-        type="is-primary"
-        icon-left="plus-box-multiple"
-        @click="addFieldset"
-      >
-        {{ `Add ${label}` }}
-      </b-button>
       <fieldset
         v-for="(item, ix) in array"
         :key="ix"
@@ -23,7 +24,7 @@
           <slot :fieldset="item" />
         </div>
         <span
-          v-if="ix === lastIx"
+          v-if="ix === lastIx(array)"
           class="add-item tag is-white"
           @click="addFieldset"
         >
@@ -31,11 +32,14 @@
         </span>
       </fieldset>
     </div>
-  </b-field>
+  </div>
 </template>
 
 <script>
+import helpers from '@/mixins/helpers'
+
 export default {
+  mixins: [helpers],
   props: {
     array: {
       type: Array,
@@ -57,9 +61,6 @@ export default {
   computed: {
     label() {
       return this.fieldsetLabel
-    },
-    lastIx() {
-      return this.array.length - 1
     },
     lowercaseLabel() {
       return this.label.toLowerCase()
@@ -96,14 +97,17 @@ export default {
 </script>
 
 <style lang="scss">
-.fieldset-array {
-  margin-bottom: 0.75rem;
+.fieldset-array-wrap {
+  &:not(:last-child) {
+    margin-bottom: 1.5rem;
+  }
   .fieldset-array-item {
-    margin-top: 0.75rem;
+    margin: unset;
     .fieldset-array-item-card {
       border: 1px solid #dbdbdb;
       border-radius: 0.25rem;
       box-shadow: 0 1px 2px rgba(10, 10, 10, 0.1);
+      margin-top: 2rem;
       padding: 2rem 1.5rem;
       position: relative;
     }
@@ -116,7 +120,11 @@ export default {
     }
     .add-item {
       cursor: pointer;
-      margin-top: 0.75rem;
+      margin-top: 1rem;
+      transition: all 300ms;
+      &:hover {
+        text-shadow: 1px 3px 9px rgba(0, 0, 0, 0.3);
+      }
     }
   }
 }
