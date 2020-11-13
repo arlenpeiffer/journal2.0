@@ -29,6 +29,61 @@
       </b-field>
     </fieldset>
 
+    <!-- Meals -->
+    <fieldset>
+      <h2 class="title is-4">Meals</h2>
+      <FieldsetArray
+        v-slot="{ fieldset }"
+        :array="meals"
+        :fieldset="mealFields"
+        fieldset-label="Meal"
+      >
+        <RadioButtonGroup
+          v-model="fieldset.type"
+          label="Type"
+          :options="mealTypes"
+        />
+        <b-field label="Time" custom-class="is-small">
+          <b-timepicker
+            v-model="fieldset.time"
+            :default-minutes="0"
+            editable
+            hour-format="12"
+            icon="clock"
+          />
+        </b-field>
+        <FieldsetArray
+          v-slot="{ fieldset }"
+          :array="fieldset.items"
+          field-label="Items"
+          :fieldset="mealItemFields"
+          fieldset-label="Item"
+        >
+          <b-field label="Name" custom-class="is-small">
+            <b-input v-model="fieldset.name" placeholder="Meal item name" />
+          </b-field>
+          <b-field label="Portion" custom-class="is-small">
+            <b-input
+              v-model="fieldset.portion"
+              placeholder="Meal item portion"
+            />
+          </b-field>
+          <ChipInput
+            v-model="fieldset.ingredients"
+            label="Ingredients"
+            :options="logs.ingredients"
+            placeholder="Meal item ingredients"
+          />
+          <b-field label="Notes" custom-class="is-small">
+            <b-input v-model="fieldset.notes" placeholder="Meal item notes" />
+          </b-field>
+        </FieldsetArray>
+        <b-field label="Notes" custom-class="is-small">
+          <b-input v-model="fieldset.notes" placeholder="Meal notes" />
+        </b-field>
+      </FieldsetArray>
+    </fieldset>
+
     <!-- Supplements -->
     <fieldset>
       <h2 class="title is-4">Supplements</h2>
@@ -198,6 +253,7 @@ import { mapGetters } from 'vuex'
 import AddToLogDropdown from '@/components/AddToLogDropdown'
 import Autocomplete from '@/components/Autocomplete'
 import CheckboxList from '@/components/CheckboxList'
+import ChipInput from '@/components/ChipInput'
 import Dropdown from '@/components/Dropdown'
 import FieldsetArray from '@/components/FieldsetArray'
 import RadioButtonGroup from '@/components/RadioButtonGroup'
@@ -207,6 +263,7 @@ export default {
     AddToLogDropdown,
     Autocomplete,
     CheckboxList,
+    ChipInput,
     Dropdown,
     FieldsetArray,
     RadioButtonGroup
@@ -217,9 +274,12 @@ export default {
       default: () => ({
         appointments: [],
         date: new Date(),
-        diet: {
-          type: null,
-          notes: ''
+        food: {
+          diet: {
+            type: null,
+            notes: ''
+          },
+          meals: []
         },
         mood: [],
         movement: [],
@@ -253,7 +313,8 @@ export default {
     return {
       appointments: this.entry.appointments,
       date: this.entry.date,
-      diet: this.entry.diet,
+      diet: this.entry.food.diet,
+      meals: this.entry.food.meals,
       mood: this.entry.mood,
       movement: this.entry.movement,
       notes: this.entry.notes,
@@ -296,6 +357,46 @@ export default {
         },
         {
           label: 'Extreme',
+          value: 4
+        }
+      ]
+    },
+    mealFields() {
+      return {
+        type: null,
+        time: null,
+        items: [],
+        notes: ''
+      }
+    },
+    mealItemFields() {
+      return {
+        name: '',
+        portion: '',
+        ingredients: [],
+        notes: ''
+      }
+    },
+    mealTypes() {
+      return [
+        {
+          label: 'Breakfast',
+          value: 0
+        },
+        {
+          label: 'Lunch',
+          value: 1
+        },
+        {
+          label: 'Dinner',
+          value: 3
+        },
+        {
+          label: 'Snack',
+          value: 2
+        },
+        {
+          label: 'Dessert',
           value: 4
         }
       ]
