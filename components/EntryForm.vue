@@ -254,6 +254,7 @@ import AddToLogDropdown from '@/components/AddToLogDropdown'
 import Autocomplete from '@/components/Autocomplete'
 import CheckboxList from '@/components/CheckboxList'
 import ChipInput from '@/components/ChipInput'
+import DatePicker from '@/components/DatePicker'
 import Dropdown from '@/components/Dropdown'
 import FieldsetArray from '@/components/FieldsetArray'
 import RadioButtonGroup from '@/components/RadioButtonGroup'
@@ -264,6 +265,7 @@ export default {
     Autocomplete,
     CheckboxList,
     ChipInput,
+    DatePicker,
     Dropdown,
     FieldsetArray,
     RadioButtonGroup
