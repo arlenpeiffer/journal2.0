@@ -1,5 +1,5 @@
 <template>
-  <b-field :label="label" custom-class="is-small">
+  <Field :label="label">
     <ul class="checkbox-list columns is-multiline">
       <li
         v-for="item in checkboxList"
@@ -17,13 +17,17 @@
       </li>
     </ul>
     <!-- TODO: add 'add new' button/input -->
-  </b-field>
+  </Field>
 </template>
 
 <script>
 import { sort } from '@/lib/helpers'
+import Field from '@/components/Field'
 
 export default {
+  components: {
+    Field
+  },
   props: {
     label: {
       type: String,

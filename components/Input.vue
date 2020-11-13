@@ -1,5 +1,5 @@
 <template>
-  <b-field :label="label" custom-class="is-small">
+  <Field :label="label">
     <b-input
       :disabled="disabled"
       :placeholder="placeholder"
@@ -7,11 +7,16 @@
       :value="value"
       @input="setValue"
     />
-  </b-field>
+  </Field>
 </template>
 
 <script>
+import Field from '@/components/Field'
+
 export default {
+  components: {
+    Field
+  },
   props: {
     disabled: {
       type: Boolean,

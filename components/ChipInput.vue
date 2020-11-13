@@ -1,5 +1,5 @@
 <template>
-  <b-field :label="label" custom-class="is-small">
+  <Field :label="label">
     <b-taginput
       allow-duplicates
       allow-new
@@ -12,13 +12,17 @@
       @input="setValue"
       @typing="setInput"
     />
-  </b-field>
+  </Field>
 </template>
 
 <script>
 import { sort } from '@/lib/helpers'
+import Field from '@/components/Field'
 
 export default {
+  components: {
+    Field
+  },
   props: {
     label: {
       type: String,

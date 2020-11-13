@@ -1,5 +1,5 @@
 <template>
-  <b-field :label="label" custom-class="is-small">
+  <Field :label="label">
     <b-datepicker
       :events="datesWithEntries"
       :focusable="false"
@@ -9,13 +9,17 @@
       :value="toDate(value)"
       @input="setValue"
     />
-  </b-field>
+  </Field>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import Field from '@/components/Field'
 
 export default {
+  components: {
+    Field
+  },
   props: {
     label: {
       type: String,

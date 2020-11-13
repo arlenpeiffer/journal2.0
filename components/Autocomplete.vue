@@ -1,18 +1,22 @@
 <template>
-  <b-field :label="label" custom-class="is-small">
+  <Field :label="label">
     <b-autocomplete
       :data="filteredOptions"
       :placeholder="placeholder"
       :value="value"
       @input="setValue"
     />
-  </b-field>
+  </Field>
 </template>
 
 <script>
 import { sort } from '@/lib/helpers'
+import Field from '@/components/Field'
 
 export default {
+  components: {
+    Field
+  },
   props: {
     label: {
       type: String,

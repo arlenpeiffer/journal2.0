@@ -1,5 +1,5 @@
 <template>
-  <b-field :label="label" custom-class="is-small">
+  <Field :label="label">
     <b-dropdown
       expanded
       max-height="150px"
@@ -37,13 +37,17 @@
         <slot />
       </div>
     </b-dropdown>
-  </b-field>
+  </Field>
 </template>
 
 <script>
 import { sort } from '@/lib/helpers'
+import Field from '@/components/Field'
 
 export default {
+  components: {
+    Field
+  },
   props: {
     allowReset: {
       type: Boolean,

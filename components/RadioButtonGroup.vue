@@ -1,6 +1,6 @@
 <template>
   <!-- handle error message / type="is-danger" -->
-  <b-field :label="label" custom-class="is-small">
+  <Field :label="label">
     <b-field class="radio-button-group">
       <b-radio-button
         v-for="option in options"
@@ -12,11 +12,16 @@
         {{ option.label }}
       </b-radio-button>
     </b-field>
-  </b-field>
+  </Field>
 </template>
 
 <script>
+import Field from '@/components/Field'
+
 export default {
+  components: {
+    Field
+  },
   props: {
     label: {
       type: String,
