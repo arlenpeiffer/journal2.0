@@ -1,20 +1,21 @@
 <template>
-  <b-field class="columns is-multiline checkbox-list">
-    <!-- TODO: add optional label -->
-    <div
-      v-for="item in checkboxList"
-      :key="item"
-      class="column is-one-third-mobile is-one-quarter-tablet is-one-fifth-desktop"
-    >
-      <b-checkbox
-        v-model="checkedItems"
-        :native-value="item"
-        class="checkbox-list-item"
-        @input="setValue"
+  <b-field :label="label" custom-class="is-small">
+    <ul class="checkbox-list columns is-multiline">
+      <li
+        v-for="item in checkboxList"
+        :key="item"
+        class="column is-one-third-mobile is-one-quarter-tablet is-one-fifth-desktop"
       >
-        {{ item }}
-      </b-checkbox>
-    </div>
+        <b-checkbox
+          v-model="checkedItems"
+          :native-value="item"
+          class="checkbox-list-item"
+          @input="setValue"
+        >
+          {{ item }}
+        </b-checkbox>
+      </li>
+    </ul>
     <!-- TODO: add 'add new' button/input -->
   </b-field>
 </template>
@@ -24,6 +25,10 @@ import { sort } from '@/lib/helpers'
 
 export default {
   props: {
+    label: {
+      type: String,
+      default: ''
+    },
     list: {
       type: Array,
       default: () => []
@@ -57,10 +62,16 @@ export default {
 
 <style lang="scss">
 .checkbox-list {
+  display: flex;
+  /* overrides negative margin in .columns class */
+  margin-top: unset;
+  &:last-child {
+    margin-bottom: unset;
+  }
   .column {
-    /* overrides default padding */
+    display: flex;
+    /* overrides default padding and column width */
     padding: 0.25rem 0.75rem;
-    /* overrides column size classes */
     @media screen and (max-width: 600px) {
       width: 50%;
     }
