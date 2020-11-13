@@ -102,7 +102,6 @@ export default {
     margin-bottom: 1.5rem;
   }
   .fieldset-array-item {
-    margin: unset;
     .fieldset-array-item-card {
       border: 1px solid #dbdbdb;
       border-radius: 0.25rem;

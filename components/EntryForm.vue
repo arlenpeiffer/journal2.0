@@ -1,14 +1,12 @@
 <template>
   <form>
     <!-- Date -->
-    <fieldset>
-      <h2 class="title is-4">Date</h2>
+    <EntrySection title="Date">
       <DatePicker v-model="date" />
-    </fieldset>
+    </EntrySection>
 
     <!-- Diet -->
-    <fieldset>
-      <h2 class="title is-4">Diet</h2>
+    <EntrySection title="Diet">
       <Dropdown
         v-model="diet.type"
         allow-reset
@@ -27,11 +25,10 @@
       <b-field label="Notes" custom-class="is-small">
         <b-input v-model="diet.notes" placeholder="Notes" />
       </b-field>
-    </fieldset>
+    </EntrySection>
 
     <!-- Meals -->
-    <fieldset>
-      <h2 class="title is-4">Meals</h2>
+    <EntrySection title="Meals">
       <FieldsetArray
         v-slot="{ fieldset }"
         :array="meals"
@@ -82,22 +79,20 @@
           <b-input v-model="fieldset.notes" placeholder="Meal notes" />
         </b-field>
       </FieldsetArray>
-    </fieldset>
+    </EntrySection>
 
     <!-- Supplements -->
-    <fieldset>
-      <h2 class="title is-4">Supplements</h2>
+    <EntrySection title="Supplements">
       <CheckboxList v-model="supplements" :list="logs.supplements" sorted />
       <AddToLogDropdown
         label="Add a supplement"
         log-name="supplements"
         mutation="ADD_SUPPLEMENT"
       />
-    </fieldset>
+    </EntrySection>
 
     <!-- Appointments -->
-    <fieldset>
-      <h2 class="title is-4">Appointments</h2>
+    <EntrySection title="Appointments">
       <FieldsetArray
         v-slot="{ fieldset }"
         :array="appointments"
@@ -120,22 +115,20 @@
           <b-input v-model="fieldset.notes" placeholder="Appointment notes" />
         </b-field>
       </FieldsetArray>
-    </fieldset>
+    </EntrySection>
 
     <!-- Mood -->
-    <fieldset>
-      <h2 class="title is-4">Mood</h2>
+    <EntrySection title="Mood">
       <CheckboxList v-model="mood" :list="logs.moods" sorted />
       <AddToLogDropdown
         label="Add a mood"
         log-name="moods"
         mutation="ADD_MOOD"
       />
-    </fieldset>
+    </EntrySection>
 
     <!-- Movement -->
-    <fieldset>
-      <h2 class="title is-4">Movement</h2>
+    <EntrySection title="Movement">
       <FieldsetArray
         v-slot="{ fieldset }"
         :array="movement"
@@ -152,11 +145,10 @@
           <b-input v-model="fieldset.notes" placeholder="Movement notes" />
         </b-field>
       </FieldsetArray>
-    </fieldset>
+    </EntrySection>
 
     <!-- Pain -->
-    <fieldset>
-      <h2 class="title is-4">Pain</h2>
+    <EntrySection title="Pain">
       <RadioButtonGroup
         v-model="pain.level"
         label="Level"
@@ -165,11 +157,10 @@
       <b-field label="Notes" custom-class="is-small">
         <b-input v-model="pain.notes" placeholder="Notes" />
       </b-field>
-    </fieldset>
+    </EntrySection>
 
     <!-- Stress -->
-    <fieldset>
-      <h2 class="title is-4">Stress</h2>
+    <EntrySection title="Stress">
       <RadioButtonGroup
         v-model="stress.level"
         label="Level"
@@ -178,11 +169,10 @@
       <b-field label="Notes" custom-class="is-small">
         <b-input v-model="stress.notes" placeholder="Notes" />
       </b-field>
-    </fieldset>
+    </EntrySection>
 
     <!-- Sleep -->
-    <fieldset>
-      <h2 class="title is-4">Sleep</h2>
+    <EntrySection title="Sleep">
       <b-field label="Amount" custom-class="is-small">
         <b-timepicker
           :v-bind="sleep.amount"
@@ -203,11 +193,10 @@
       <b-field label="Notes" custom-class="is-small">
         <b-input v-model="sleep.notes" placeholder="Notes" />
       </b-field>
-    </fieldset>
+    </EntrySection>
 
     <!-- Stomach -->
-    <fieldset>
-      <h2 class="title is-4">Stomach</h2>
+    <EntrySection title="Stomach">
       <b-field label="Rating" custom-class="is-small">
         <b-rate
           :v-bind="stomach.rating"
@@ -219,11 +208,10 @@
       <b-field label="Notes" custom-class="is-small">
         <b-input v-model="stomach.notes" placeholder="Notes" />
       </b-field>
-    </fieldset>
+    </EntrySection>
 
     <!-- Travel -->
-    <fieldset>
-      <h2 class="title is-4">Travel</h2>
+    <EntrySection title="Travel">
       <b-field label="Be ye traveling?" custom-class="is-small">
         <b-switch v-model="travel.isTraveling" @input="setLocation">
           {{ isTravelingLabel }}
@@ -232,17 +220,16 @@
       <b-field label="Where ya at?" custom-class="is-small">
         <b-input v-model="travel.location" :disabled="!travel.isTraveling" />
       </b-field>
-    </fieldset>
+    </EntrySection>
 
     <!-- Notes -->
-    <fieldset>
-      <h2 class="title is-4">Notes</h2>
+    <EntrySection title="Notes">
       <b-input
         v-model="notes"
         type="textarea"
         placeholder="Overall notes about the day.."
       />
-    </fieldset>
+    </EntrySection>
 
     <b-button type="is-primary" @click="submitEntry">Submit</b-button>
   </form>
@@ -256,6 +243,7 @@ import CheckboxList from '@/components/CheckboxList'
 import ChipInput from '@/components/ChipInput'
 import DatePicker from '@/components/DatePicker'
 import Dropdown from '@/components/Dropdown'
+import EntrySection from '@/components/EntrySection'
 import FieldsetArray from '@/components/FieldsetArray'
 import RadioButtonGroup from '@/components/RadioButtonGroup'
 
@@ -267,6 +255,7 @@ export default {
     ChipInput,
     DatePicker,
     Dropdown,
+    EntrySection,
     FieldsetArray,
     RadioButtonGroup
   },
@@ -442,12 +431,11 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 form {
   padding: 0 1.5rem;
-}
-
-fieldset {
-  margin: 3rem 0;
+  & > :not(:last-child) {
+    margin: 3rem 0;
+  }
 }
 </style>
