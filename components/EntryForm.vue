@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form id="entry-form">
     <!-- Date -->
     <EntrySection title="Date">
       <DatePicker v-model="date" />
@@ -435,7 +435,7 @@ export default {
 </script>
 
 <style lang="scss">
-form {
+#entry-form {
   padding: 0 1.5rem;
   & > :not(:last-child) {
     margin: 3rem 0;
