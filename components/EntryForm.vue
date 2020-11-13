@@ -22,9 +22,7 @@
           mutation="ADD_DIET"
         />
       </Dropdown>
-      <b-field label="Notes" custom-class="is-small">
-        <b-input v-model="diet.notes" placeholder="Notes" />
-      </b-field>
+      <Input v-model="diet.notes" label="Notes" placeholder="Notes" />
     </EntrySection>
 
     <!-- Meals -->
@@ -56,28 +54,33 @@
           :fieldset="mealItemFields"
           fieldset-label="Item"
         >
-          <b-field label="Name" custom-class="is-small">
-            <b-input v-model="fieldset.name" placeholder="Meal item name" />
-          </b-field>
-          <b-field label="Portion" custom-class="is-small">
-            <b-input
-              v-model="fieldset.portion"
-              placeholder="Meal item portion"
-            />
-          </b-field>
+          <Input
+            v-model="fieldset.name"
+            label="Name"
+            placeholder="Meal item name"
+          />
+          <Input
+            v-model="fieldset.portion"
+            label="Portion"
+            placeholder="Meal item portion"
+          />
           <ChipInput
             v-model="fieldset.ingredients"
             label="Ingredients"
             :options="logs.ingredients"
             placeholder="Meal item ingredients"
           />
-          <b-field label="Notes" custom-class="is-small">
-            <b-input v-model="fieldset.notes" placeholder="Meal item notes" />
-          </b-field>
+          <Input
+            v-model="fieldset.notes"
+            label="Notes"
+            placeholder="Meal item notes"
+          />
         </FieldsetArray>
-        <b-field label="Notes" custom-class="is-small">
-          <b-input v-model="fieldset.notes" placeholder="Meal notes" />
-        </b-field>
+        <Input
+          v-model="fieldset.notes"
+          label="Notes"
+          placeholder="Meal notes"
+        />
       </FieldsetArray>
     </EntrySection>
 
@@ -111,9 +114,11 @@
           :options="logs.practitioners"
           placeholder="Appointment practitioner name"
         />
-        <b-field label="Notes" custom-class="is-small">
-          <b-input v-model="fieldset.notes" placeholder="Appointment notes" />
-        </b-field>
+        <Input
+          v-model="fieldset.notes"
+          label="Notes"
+          placeholder="Appointment notes"
+        />
       </FieldsetArray>
     </EntrySection>
 
@@ -141,9 +146,11 @@
           :options="logs.movement"
           placeholder="Movement type (eg. Swimming, Yoga)"
         />
-        <b-field label="Notes" custom-class="is-small">
-          <b-input v-model="fieldset.notes" placeholder="Movement notes" />
-        </b-field>
+        <Input
+          v-model="fieldset.notes"
+          label="Notes"
+          placeholder="Movement notes"
+        />
       </FieldsetArray>
     </EntrySection>
 
@@ -154,9 +161,7 @@
         label="Level"
         :options="levelOptions"
       />
-      <b-field label="Notes" custom-class="is-small">
-        <b-input v-model="pain.notes" placeholder="Notes" />
-      </b-field>
+      <Input v-model="pain.notes" label="Notes" placeholder="Notes" />
     </EntrySection>
 
     <!-- Stress -->
@@ -166,9 +171,7 @@
         label="Level"
         :options="levelOptions"
       />
-      <b-field label="Notes" custom-class="is-small">
-        <b-input v-model="stress.notes" placeholder="Notes" />
-      </b-field>
+      <Input v-model="stress.notes" label="Notes" placeholder="Notes" />
     </EntrySection>
 
     <!-- Sleep -->
@@ -190,9 +193,7 @@
           @change="setSleepRating"
         />
       </b-field>
-      <b-field label="Notes" custom-class="is-small">
-        <b-input v-model="sleep.notes" placeholder="Notes" />
-      </b-field>
+      <Input v-model="sleep.notes" label="Notes" placeholder="Notes" />
     </EntrySection>
 
     <!-- Stomach -->
@@ -205,9 +206,7 @@
           @change="setStomachRating"
         />
       </b-field>
-      <b-field label="Notes" custom-class="is-small">
-        <b-input v-model="stomach.notes" placeholder="Notes" />
-      </b-field>
+      <Input v-model="stomach.notes" label="Notes" placeholder="Notes" />
     </EntrySection>
 
     <!-- Travel -->
@@ -217,20 +216,20 @@
           {{ isTravelingLabel }}
         </b-switch>
       </b-field>
-      <b-field label="Where ya at?" custom-class="is-small">
-        <b-input v-model="travel.location" :disabled="!travel.isTraveling" />
-      </b-field>
+      <Input
+        v-model="travel.location"
+        :disabled="!travel.isTraveling"
+        label="Where ya at?"
+      />
     </EntrySection>
 
     <!-- Notes -->
     <EntrySection title="Notes">
-      <b-field>
-        <b-input
-          v-model="notes"
-          type="textarea"
-          placeholder="Overall notes about the day.."
-        />
-      </b-field>
+      <Input
+        v-model="notes"
+        type="textarea"
+        placeholder="Overall notes about the day.."
+      />
     </EntrySection>
 
     <b-button type="is-primary" @click="submitEntry">Submit</b-button>
@@ -247,6 +246,7 @@ import DatePicker from '@/components/DatePicker'
 import Dropdown from '@/components/Dropdown'
 import EntrySection from '@/components/EntrySection'
 import FieldsetArray from '@/components/FieldsetArray'
+import Input from '@/components/Input'
 import RadioButtonGroup from '@/components/RadioButtonGroup'
 
 export default {
@@ -259,6 +259,7 @@ export default {
     Dropdown,
     EntrySection,
     FieldsetArray,
+    Input,
     RadioButtonGroup
   },
   props: {
