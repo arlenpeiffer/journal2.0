@@ -101,28 +101,33 @@ export default {
   &:not(:last-child) {
     margin-bottom: 1.5rem;
   }
-  .fieldset-array-item {
-    .fieldset-array-item-card {
-      border: 1px solid #dbdbdb;
-      border-radius: 0.25rem;
-      box-shadow: 0 1px 2px rgba(10, 10, 10, 0.1);
-      margin-top: 2rem;
-      padding: 2rem 1.5rem;
-      position: relative;
-    }
-    .remove-item {
-      display: flex;
-      justify-content: flex-end;
-      position: absolute;
-      right: 0.75rem;
-      top: 0.75rem;
-    }
-    .add-item {
-      cursor: pointer;
-      margin-top: 1rem;
-      transition: all 300ms;
-      &:hover {
-        text-shadow: 1px 3px 9px rgba(0, 0, 0, 0.3);
+
+  .fieldset-array {
+    .fieldset-array-item {
+      .fieldset-array-item-card {
+        border: 1px solid #dbdbdb;
+        border-radius: 0.25rem;
+        box-shadow: 0 1px 2px rgba(10, 10, 10, 0.1);
+        margin-top: 2rem;
+        padding: 2rem 1.5rem;
+        position: relative;
+      }
+
+      .remove-item {
+        display: flex;
+        justify-content: flex-end;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.75rem;
+      }
+
+      .add-item {
+        cursor: pointer;
+        margin-top: 1rem;
+        transition: all 300ms;
+        &:hover {
+          text-shadow: 1px 3px 9px rgba(0, 0, 0, 0.3);
+        }
       }
     }
   }
