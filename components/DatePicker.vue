@@ -1,13 +1,15 @@
 <template>
-  <b-datepicker
-    :events="datesWithEntries"
-    :focusable="false"
-    inline
-    :max-date="toDate(today)"
-    :parse-date="input => toDate(input)"
-    :value="toDate(value)"
-    @input="setValue"
-  />
+  <b-field :label="label" custom-class="is-small">
+    <b-datepicker
+      :events="datesWithEntries"
+      :focusable="false"
+      inline
+      :max-date="toDate(today)"
+      :parse-date="input => toDate(input)"
+      :value="toDate(value)"
+      @input="setValue"
+    />
+  </b-field>
 </template>
 
 <script>
@@ -15,6 +17,10 @@ import { mapGetters } from 'vuex'
 
 export default {
   props: {
+    label: {
+      type: String,
+      default: ''
+    },
     value: {
       type: [Date, Number],
       default: new Date()

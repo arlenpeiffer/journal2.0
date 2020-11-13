@@ -224,11 +224,13 @@
 
     <!-- Notes -->
     <EntrySection title="Notes">
-      <b-input
-        v-model="notes"
-        type="textarea"
-        placeholder="Overall notes about the day.."
-      />
+      <b-field>
+        <b-input
+          v-model="notes"
+          type="textarea"
+          placeholder="Overall notes about the day.."
+        />
+      </b-field>
     </EntrySection>
 
     <b-button type="is-primary" @click="submitEntry">Submit</b-button>
