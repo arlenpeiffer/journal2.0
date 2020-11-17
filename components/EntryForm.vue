@@ -185,27 +185,13 @@
           @input="setSleepAmount"
         />
       </b-field>
-      <b-field label="Rating" custom-class="is-small">
-        <b-rate
-          :v-bind="sleep.rating"
-          spaced
-          :value="sleep.rating"
-          @change="setSleepRating"
-        />
-      </b-field>
+      <Rating v-model="sleep.rating" label="Rating" />
       <Input v-model="sleep.notes" label="Notes" placeholder="Notes" />
     </EntrySection>
 
     <!-- Stomach -->
     <EntrySection title="Stomach">
-      <b-field label="Rating" custom-class="is-small">
-        <b-rate
-          :v-bind="stomach.rating"
-          spaced
-          :value="stomach.rating"
-          @change="setStomachRating"
-        />
-      </b-field>
+      <Rating v-model="stomach.rating" label="Rating" />
       <Input v-model="stomach.notes" label="Notes" placeholder="Notes" />
     </EntrySection>
 
@@ -248,6 +234,7 @@ import EntrySection from '@/components/EntrySection'
 import FieldsetArray from '@/components/FieldsetArray'
 import Input from '@/components/Input'
 import RadioButtonGroup from '@/components/RadioButtonGroup'
+import Rating from '@/components/Rating'
 
 export default {
   components: {
@@ -260,7 +247,8 @@ export default {
     EntrySection,
     FieldsetArray,
     Input,
-    RadioButtonGroup
+    RadioButtonGroup,
+    Rating
   },
   props: {
     entry: {
@@ -416,16 +404,6 @@ export default {
       const amount = (h + m) * 3600000
 
       this.sleep.amount = amount
-    },
-    setSleepRating(rating) {
-      rating === this.sleep.rating
-        ? (this.sleep.rating = null)
-        : (this.sleep.rating = rating)
-    },
-    setStomachRating(rating) {
-      rating === this.stomach.rating
-        ? (this.stomach.rating = null)
-        : (this.stomach.rating = rating)
     },
     submitEntry() {
       console.log({ ...this.$data }) // or just console.log(this.$data) ?
