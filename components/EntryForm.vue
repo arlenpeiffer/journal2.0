@@ -197,11 +197,13 @@
 
     <!-- Travel -->
     <EntrySection title="Travel">
-      <b-field label="Be ye traveling?" custom-class="is-small">
-        <b-switch v-model="travel.isTraveling" @input="setLocation">
-          {{ isTravelingLabel }}
-        </b-switch>
-      </b-field>
+      <Toggle
+        v-model="travel.isTraveling"
+        label="Be ye traveling?"
+        toggle-label-false="No"
+        toggle-label-true="Yes"
+        @input="setLocation"
+      />
       <Input
         v-model="travel.location"
         :disabled="!travel.isTraveling"
@@ -235,6 +237,7 @@ import FieldsetArray from '@/components/FieldsetArray'
 import Input from '@/components/Input'
 import RadioButtonGroup from '@/components/RadioButtonGroup'
 import Rating from '@/components/Rating'
+import Toggle from '@/components/Toggle'
 
 export default {
   components: {
@@ -248,7 +251,8 @@ export default {
     FieldsetArray,
     Input,
     RadioButtonGroup,
-    Rating
+    Rating,
+    Toggle
   },
   props: {
     entry: {
@@ -315,9 +319,6 @@ export default {
         practitioner: '',
         notes: ''
       }
-    },
-    isTravelingLabel() {
-      return this.travel.isTraveling ? 'Yes' : 'No'
     },
     levelOptions() {
       return [
@@ -393,9 +394,8 @@ export default {
   },
   methods: {
     setLocation(isTraveling) {
-      isTraveling
-        ? (this.travel.location = '')
-        : (this.travel.location = 'Home')
+      const location = isTraveling ? '' : 'Home'
+      this.travel.location = location
     },
     setSleepAmount(date) {
       let [h, m] = date.toTimeString().slice(0, 5).split(':')
