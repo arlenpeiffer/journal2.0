@@ -46,7 +46,7 @@ export default {
 
 <style lang="scss">
 @media screen and (max-width: 600px) {
-  .radio-button-group {
+  .radio-button-group .has-addons {
     flex-direction: column;
     .control {
       label {
