@@ -176,15 +176,13 @@
 
     <!-- Sleep -->
     <EntrySection title="Sleep">
-      <b-field label="Amount" custom-class="is-small">
-        <b-timepicker
-          :v-bind="sleep.amount"
-          :increment-minutes="15"
-          :default-minutes="0"
-          inline
-          @input="setSleepAmount"
-        />
-      </b-field>
+      <Slider
+        v-model="sleep.amount"
+        :format="formatHoursForDisplay"
+        label="Amount"
+        :max="86400000"
+        :step="900000"
+      />
       <Rating v-model="sleep.rating" label="Rating" />
       <Input v-model="sleep.notes" label="Notes" placeholder="Notes" />
     </EntrySection>
@@ -237,7 +235,9 @@ import FieldsetArray from '@/components/FieldsetArray'
 import Input from '@/components/Input'
 import RadioButtonGroup from '@/components/RadioButtonGroup'
 import Rating from '@/components/Rating'
+import Slider from '@/components/Slider'
 import Toggle from '@/components/Toggle'
+import helpers from '@/mixins/helpers'
 
 export default {
   components: {
@@ -252,8 +252,10 @@ export default {
     Input,
     RadioButtonGroup,
     Rating,
+    Slider,
     Toggle
   },
+  mixins: [helpers],
   props: {
     entry: {
       type: Object,
@@ -396,14 +398,6 @@ export default {
     setLocation(isTraveling) {
       const location = isTraveling ? '' : 'Home'
       this.travel.location = location
-    },
-    setSleepAmount(date) {
-      let [h, m] = date.toTimeString().slice(0, 5).split(':')
-      h = Number(h)
-      m = Number(m / 60)
-      const amount = (h + m) * 3600000
-
-      this.sleep.amount = amount
     },
     submitEntry() {
       console.log({ ...this.$data }) // or just console.log(this.$data) ?
