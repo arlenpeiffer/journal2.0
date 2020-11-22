@@ -180,8 +180,8 @@
         v-model="sleep.amount"
         :format="formatHoursForDisplay"
         label="Amount"
-        :max="86400000"
-        :step="900000"
+        :max="milliseconds(24, 'h')"
+        :step="milliseconds(15, 'm')"
       />
       <Rating v-model="sleep.rating" label="Rating" />
       <Input v-model="sleep.notes" label="Notes" placeholder="Notes" />

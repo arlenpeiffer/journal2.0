@@ -21,6 +21,17 @@ export default {
     lastIx(arr) {
       return arr.length - 1
     },
+    milliseconds(value, unit = 's') {
+      const units = ['h', 'm', 's']
+      if (units.includes(unit)) {
+        const hours = unit === 'h' ? 60 : 1
+        const minutes = unit !== 's' ? 60 : 1
+        const seconds = 1000
+        return value * hours * minutes * seconds
+      } else {
+        return 0
+      }
+    },
     toFraction(decimal) {
       switch (decimal) {
         case 0.25:
