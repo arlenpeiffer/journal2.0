@@ -38,15 +38,7 @@
           label="Type"
           :options="mealTypes"
         />
-        <b-field label="Time" custom-class="is-small">
-          <b-timepicker
-            v-model="fieldset.time"
-            :default-minutes="0"
-            editable
-            hour-format="12"
-            icon="clock"
-          />
-        </b-field>
+        <TimePicker v-model="fieldset.time" label="Time" />
         <FieldsetArray
           v-slot="{ fieldset }"
           :array="fieldset.items"
@@ -236,6 +228,7 @@ import Input from '@/components/Input'
 import RadioButtonGroup from '@/components/RadioButtonGroup'
 import Rating from '@/components/Rating'
 import Slider from '@/components/Slider'
+import TimePicker from '@/components/TimePicker'
 import Toggle from '@/components/Toggle'
 import helpers from '@/mixins/helpers'
 
@@ -253,6 +246,7 @@ export default {
     RadioButtonGroup,
     Rating,
     Slider,
+    TimePicker,
     Toggle
   },
   mixins: [helpers],

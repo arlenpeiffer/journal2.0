@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     handleInitialization() {
-      // initializes new Date() as unix value
+      // sets initial value to start of current day in milliseconds
       if (typeof this.value !== 'number') {
         this.setValue(this.value)
       }
