@@ -30,7 +30,7 @@
       <FieldsetArray
         v-slot="{ fieldset }"
         :array="meals"
-        :fieldset="mealFields"
+        :fieldset="fieldsForMeal"
         fieldset-label="Meal"
       >
         <RadioButtonGroup
@@ -43,7 +43,7 @@
           v-slot="{ fieldset }"
           :array="fieldset.items"
           field-label="Items"
-          :fieldset="mealItemFields"
+          :fieldset="fieldsForMealItem"
           fieldset-label="Item"
         >
           <Input
@@ -91,7 +91,7 @@
       <FieldsetArray
         v-slot="{ fieldset }"
         :array="appointments"
-        :fieldset="appointmentFields"
+        :fieldset="fieldsForAppointment"
         fieldset-label="Appointment"
       >
         <Autocomplete
@@ -129,7 +129,7 @@
       <FieldsetArray
         v-slot="{ fieldset }"
         :array="movement"
-        :fieldset="movementFields"
+        :fieldset="fieldsForMovement"
         fieldset-label="Movement"
       >
         <Autocomplete
@@ -309,10 +309,32 @@ export default {
     }
   },
   computed: {
-    appointmentFields() {
+    fieldsForAppointment() {
       return {
         type: '',
         practitioner: '',
+        notes: ''
+      }
+    },
+    fieldsForMeal() {
+      return {
+        type: null,
+        time: null,
+        items: [],
+        notes: ''
+      }
+    },
+    fieldsForMealItem() {
+      return {
+        name: '',
+        portion: '',
+        ingredients: [],
+        notes: ''
+      }
+    },
+    fieldsForMovement() {
+      return {
+        type: '',
         notes: ''
       }
     },
@@ -340,22 +362,6 @@ export default {
         }
       ]
     },
-    mealFields() {
-      return {
-        type: null,
-        time: null,
-        items: [],
-        notes: ''
-      }
-    },
-    mealItemFields() {
-      return {
-        name: '',
-        portion: '',
-        ingredients: [],
-        notes: ''
-      }
-    },
     mealTypes() {
       return [
         {
@@ -379,12 +385,6 @@ export default {
           value: 4
         }
       ]
-    },
-    movementFields() {
-      return {
-        type: '',
-        notes: ''
-      }
     },
     ...mapGetters(['logs'])
   },
