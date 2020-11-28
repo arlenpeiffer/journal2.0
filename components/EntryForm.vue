@@ -215,6 +215,7 @@
 </template>
 
 <script>
+import _ from 'lodash'
 import { mapGetters } from 'vuex'
 import AddToLogDropdown from '@/components/AddToLogDropdown'
 import Autocomplete from '@/components/Autocomplete'
@@ -293,19 +294,19 @@ export default {
   },
   data() {
     return {
-      appointments: this.entry.appointments,
-      date: this.entry.date,
-      diet: this.entry.food.diet,
-      meals: this.entry.food.meals,
-      mood: this.entry.mood,
-      movement: this.entry.movement,
-      notes: this.entry.notes,
-      pain: this.entry.pain,
-      sleep: this.entry.sleep,
-      stomach: this.entry.stomach,
-      stress: this.entry.stress,
-      supplements: this.entry.supplements,
-      travel: this.entry.travel
+      appointments: _.cloneDeep(this.entry.appointments),
+      date: _.clone(this.entry.date),
+      diet: _.cloneDeep(this.entry.food.diet),
+      meals: _.cloneDeep(this.entry.food.meals),
+      mood: _.clone(this.entry.mood),
+      movement: _.cloneDeep(this.entry.movement),
+      notes: _.clone(this.entry.notes),
+      pain: _.cloneDeep(this.entry.pain),
+      sleep: _.cloneDeep(this.entry.sleep),
+      stomach: _.cloneDeep(this.entry.stomach),
+      stress: _.cloneDeep(this.entry.stress),
+      supplements: _.clone(this.entry.supplements),
+      travel: _.cloneDeep(this.entry.travel)
     }
   },
   computed: {
