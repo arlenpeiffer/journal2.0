@@ -19,7 +19,8 @@
     "firebase": "^7.16.0",
     "lodash": "^4.17.20",
     "nuxt": "^2.13.0",
-    "nuxt-buefy": "^0.4.4"
+    "nuxt-buefy": "^0.4.4",
+    "vuelidate": "^0.7.6"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.0.0",
