@@ -1,5 +1,5 @@
 <template>
-  <Field :label="label">
+  <Field :error="error" :label="label">
     <ul class="checkbox-list columns is-multiline">
       <li
         v-for="item in checkboxList"
@@ -23,16 +23,14 @@
 <script>
 import { sort } from '@/lib/helpers'
 import Field from '@/components/Field'
+import field from '@/mixins/field'
 
 export default {
   components: {
     Field
   },
+  mixins: [field],
   props: {
-    label: {
-      type: String,
-      default: ''
-    },
     list: {
       type: Array,
       default: () => []

@@ -1,5 +1,5 @@
 <template>
-  <Field :label="label">
+  <Field :error="error" :label="label">
     <b-switch :value="value" @input="setValue">
       {{ toggleLabel }}
     </b-switch>
@@ -8,16 +8,14 @@
 
 <script>
 import Field from '@/components/Field'
+import field from '@/mixins/field'
 
 export default {
   components: {
     Field
   },
+  mixins: [field],
   props: {
-    label: {
-      type: String,
-      default: ''
-    },
     toggleLabelFalse: {
       type: String,
       default: ''

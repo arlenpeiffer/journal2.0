@@ -1,5 +1,5 @@
 <template>
-  <Field :label="label">
+  <Field :error="error" :label="label">
     <b-timepicker
       hour-format="12"
       inline
@@ -12,16 +12,14 @@
 
 <script>
 import Field from '@/components/Field'
+import field from '@/mixins/field'
 
 export default {
   components: {
     Field
   },
+  mixins: [field],
   props: {
-    label: {
-      type: String,
-      default: ''
-    },
     value: {
       type: [Date, Number],
       default: new Date()

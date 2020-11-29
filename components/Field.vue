@@ -1,15 +1,17 @@
 <template>
-  <b-field :label="label" custom-class="is-small">
+  <b-field :label="label" :message="error" :type="type" custom-class="is-small">
     <slot />
   </b-field>
 </template>
 
 <script>
+import field from '@/mixins/field'
+
 export default {
-  props: {
-    label: {
-      type: String,
-      default: ''
+  mixins: [field],
+  computed: {
+    type() {
+      return this.error ? 'is-danger' : ''
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <Field :label="label">
+  <Field :error="error" :label="label">
     <b-dropdown
       expanded
       max-height="150px"
@@ -43,11 +43,13 @@
 <script>
 import { sort } from '@/lib/helpers'
 import Field from '@/components/Field'
+import field from '@/mixins/field'
 
 export default {
   components: {
     Field
   },
+  mixins: [field],
   props: {
     allowReset: {
       type: Boolean,
@@ -56,10 +58,6 @@ export default {
     includeFooter: {
       type: Boolean,
       default: false
-    },
-    label: {
-      type: String,
-      default: ''
     },
     options: {
       type: Array,

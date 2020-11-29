@@ -1,5 +1,5 @@
 <template>
-  <Field :label="label">
+  <Field :error="error" :label="label">
     <b-taginput
       allow-duplicates
       allow-new
@@ -18,16 +18,14 @@
 <script>
 import { sort } from '@/lib/helpers'
 import Field from '@/components/Field'
+import field from '@/mixins/field'
 
 export default {
   components: {
     Field
   },
+  mixins: [field],
   props: {
-    label: {
-      type: String,
-      default: ''
-    },
     options: {
       type: Array,
       default: () => []

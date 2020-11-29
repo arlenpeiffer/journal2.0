@@ -1,5 +1,5 @@
 <template>
-  <Field :label="label">
+  <Field :error="error" :label="label">
     <b-slider
       :custom-formatter="format"
       indicator
@@ -16,19 +16,17 @@
 
 <script>
 import Field from '@/components/Field'
+import field from '@/mixins/field'
 
 export default {
   components: {
     Field
   },
+  mixins: [field],
   props: {
     format: {
       type: Function,
       default: value => value
-    },
-    label: {
-      type: String,
-      default: ''
     },
     max: {
       type: Number,

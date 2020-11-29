@@ -1,21 +1,19 @@
 <template>
-  <Field :label="label">
+  <Field :error="error" :label="label">
     <b-rate spaced :value="value" @change="setValue" />
   </Field>
 </template>
 
 <script>
 import Field from '@/components/Field'
+import field from '@/mixins/field'
 
 export default {
   components: {
     Field
   },
+  mixins: [field],
   props: {
-    label: {
-      type: String,
-      default: ''
-    },
     value: {
       type: Number,
       default: null
