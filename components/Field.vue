@@ -1,5 +1,10 @@
 <template>
-  <b-field :label="label" :message="error" :type="type" custom-class="is-small">
+  <b-field
+    custom-class="is-small"
+    :label="label"
+    :message="message"
+    :type="type"
+  >
     <slot />
   </b-field>
 </template>
@@ -10,8 +15,11 @@ import field from '@/mixins/field'
 export default {
   mixins: [field],
   computed: {
+    message() {
+      return this.hasError ? this.errorMessage : ''
+    },
     type() {
-      return this.error ? 'is-danger' : ''
+      return this.hasError ? 'is-danger' : ''
     }
   }
 }

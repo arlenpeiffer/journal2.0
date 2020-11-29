@@ -1,5 +1,5 @@
 <template>
-  <Field :error="error" :label="label">
+  <Field :error-message="errorMessage" :has-error="hasError" :label="label">
     <b-dropdown
       expanded
       max-height="150px"

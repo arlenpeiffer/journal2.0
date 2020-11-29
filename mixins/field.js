@@ -1,8 +1,12 @@
 export default {
   props: {
-    error: {
+    errorMessage: {
       type: String,
       default: ''
+    },
+    hasError: {
+      type: Boolean,
+      default: false
     },
     label: {
       type: String,
