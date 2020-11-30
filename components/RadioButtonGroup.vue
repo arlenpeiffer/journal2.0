@@ -42,15 +42,23 @@ export default {
 </script>
 
 <style lang="scss">
-@media screen and (max-width: 600px) {
-  .radio-button-group .has-addons {
-    flex-direction: column;
-    .control {
-      label {
-        border-radius: 4px !important;
-      }
-      &:not(:last-of-type) {
-        margin-bottom: 0.25rem;
+.field {
+  .radio-button-group {
+    /* removes doubled margin-bottom */
+    margin-bottom: unset;
+
+    /* vertical layout for mobile */
+    @media screen and (max-width: 600px) {
+      .has-addons {
+        flex-direction: column;
+        .control {
+          label {
+            border-radius: 4px !important;
+          }
+          &:not(:last-of-type) {
+            margin-bottom: 0.25rem;
+          }
+        }
       }
     }
   }

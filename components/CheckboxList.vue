@@ -63,29 +63,32 @@ export default {
 </script>
 
 <style lang="scss">
-.checkbox-list {
-  display: flex;
-  /* overrides negative margin in .columns class */
-  margin-top: unset;
-  &:last-child {
-    margin-bottom: unset;
-  }
-  .column {
+.field {
+  .checkbox-list {
     display: flex;
-    /* overrides default padding and column width */
-    padding: 0.25rem 0.75rem;
-    @media screen and (max-width: 600px) {
-      width: 50%;
+    /* overrides margins in .columns class */
+    margin-top: unset;
+    margin-bottom: unset;
+    &:last-child {
+      margin-bottom: unset;
     }
-    @media screen and (max-width: 425px) {
-      width: 100%;
-    }
-    .checkbox-list-item {
-      width: 100%;
-      .control-label {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+    .column {
+      display: flex;
+      /* overrides default padding and column width */
+      padding: 0.25rem 0.75rem;
+      @media screen and (max-width: 600px) {
+        width: 50%;
+      }
+      @media screen and (max-width: 425px) {
+        width: 100%;
+      }
+      .checkbox-list-item {
+        width: 100%;
+        .control-label {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
       }
     }
   }

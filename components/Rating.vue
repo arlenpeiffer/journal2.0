@@ -30,4 +30,11 @@ export default {
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.field {
+  .rate {
+    /* removes doubled margin-bottom */
+    margin-bottom: unset;
+  }
+}
+</style>
